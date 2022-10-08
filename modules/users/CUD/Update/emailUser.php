@@ -1,15 +1,15 @@
 <?php
 //Contrôle doublon mail
-$doublon = new Controles();
+$doublon = new system\Controles();
 $sql = "SELECT`email`FROM `users` WHERE `email` = :email";
 $preparation = ':email';
 $valeur = filter($_POST['email']);
   array_push($controleForm, $doublon->doublon($sql, $preparation , $valeur));
   if($controleForm == [0, 0]) {
-    $parametre = new Preparation();
+    $parametre = new system\Preparation();
     $param = $parametre->creationPrepTokenUser ($_POST);
     $update = "UPDATE `users` SET `email`= :email WHERE `token` = :token";
-    $action = new RCUD($update, $param);
+    $action = new system\RCUD($update, $param);
     $action->CUD();
     header('location:../index.php?message=Votre email a été modifié&idNav='.$idNav);
   } else {

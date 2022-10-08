@@ -2,10 +2,10 @@
 if((filter($_POST['mdp']) == filter($_POST['mdpA']))&&(strlen(filter($_POST['mdp'])) > 9)) {
   array_pop($_POST);
   $_POST['mdp'] = haschage(filter($_POST['mdp']));
-  $parametre = new Preparation();
+  $parametre = new system\Preparation();
   $param = $parametre->creationPrepTokenUser ($_POST);
   $update = "UPDATE `users` SET `mdp`= :mdp WHERE `token` = :token";
-  $action = new RCUD($update, $param);
+  $action = new system\RCUD($update, $param);
   $action->CUD();
   header('location:../index.php?message=Votre mot de passe a été modifié&idNav='.$idNav);
 } else {

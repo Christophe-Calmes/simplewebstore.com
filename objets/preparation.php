@@ -1,4 +1,5 @@
 <?php
+namespace system;
 class Preparation {
   public function creationPrep ($data) {
     foreach ($data as $key => $value) {

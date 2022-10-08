@@ -15,7 +15,7 @@ $parPage = 25;
 $param = [];
 // Recherche des connexions aux sites
 $requetteSQL = "SELECT COUNT(`idConnexion`) AS `nbrConnexion` FROM `journaux`";
-$nrbC = new RCUD($requetteSQL, $param);
+$nrbC = new system\RCUD($requetteSQL, $param);
 $dataNbrC = $nrbC->READ();
 $nbrArticle = $dataNbrC[0]['nbrConnexion'];
 // nombre de page total arrondit au chiffre suppérieur.
@@ -25,7 +25,7 @@ $premier = ($currentPage * $parPage) - $parPage;
 $requetteSQL = "SELECT *
 FROM `journaux`
 ORDER BY `idConnexion` DESC LIMIT {$premier}, {$parPage}";
-$traitement = new RCUD($requetteSQL, $param);
+$traitement = new system\RCUD($requetteSQL, $param);
 $dataTraiter = $traitement->READ();
 $yes = ['Non', 'Oui'];
 //print_r($dataTraiter);

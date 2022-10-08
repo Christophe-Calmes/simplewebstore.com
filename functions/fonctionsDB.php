@@ -59,7 +59,7 @@ function redirect($data, $idNav) {
    // Niveau d'accréditation pour voir la ressource demandé.
    $read = "SELECT `idUser`, `role` FROM `users` WHERE `token` = :token";
    $param = [['prep'=>':token', 'variable'=>$token]];
-   $test = new RCUD( $read, $param);
+   $test = new system\RCUD( $read, $param);
    $dataIdUser = $test->READ();
    if (($dataIdUser[0]['idUser']== $_SESSION['idUser']) && ( $dataIdUser[0]['role'] >= $niveau)) {
      return 1;
@@ -71,7 +71,7 @@ function redirect($data, $idNav) {
  function getSecuriter($route) {
   $read = "SELECT `chemin`, `securite` FROM `targetRCUD` WHERE `routageToken` = :routageToken AND `valide` = 1";
   $param = [['prep'=>':routageToken', 'variable'=>$route]];
-  $readDB = new RCUD($read, $param);
+  $readDB = new system\RCUD($read, $param);
   $dataTraiter = $readDB->READ();
   if($dataTraiter == []) {
     session_destroy();
@@ -84,7 +84,7 @@ function redirect($data, $idNav) {
 function findTargetRoute($id) {
   $select ="SELECT  `targetRoute` FROM `navigation` WHERE `idNav` = :idNav";
   $param = [['prep'=>':idNav', 'variable'=>$id]];
-  $findRoute = new RCUD($select, $param);
+  $findRoute = new system\RCUD($select, $param);
   $route = $findRoute->READ();
   return 'index.php?idNav='.$route[0]['targetRoute'];
 }

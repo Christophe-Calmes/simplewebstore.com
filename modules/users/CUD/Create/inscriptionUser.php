@@ -12,7 +12,7 @@ if(($mdp == $mdpA)&&(strlen($mdp) > 9)) {
       array_push($controleForm,sizePost(filter($_POST[$value['post']]), $value['size']));
   }
   // Contrôle doublon mail
-  $doublon = new Controles();
+  $doublon = new system\Controles();
   $sql = "SELECT`email`FROM `users` WHERE `email` = :email";
   $preparation = ':email';
   $valeur = filter($_POST['email']);
@@ -26,12 +26,12 @@ if(($mdp == $mdpA)&&(strlen($mdp) > 9)) {
     $_POST['mdp'] = haschage(filter($_POST['mdp']));
     // Creation d'un primo token
     $_POST['token'] = genToken(16);
-    $parametre = new Preparation();
+    $parametre = new system\Preparation();
     $param = $parametre->creationPrep ($_POST);
       $insert = "INSERT INTO `users`(`email`, `prenom`, `nom`, `login`, `mdp`, `token`)
       VALUES (:email, :prenom, :nom, :login, :mdp, :token)";
       print_r($param);
-      $action = new RCUD($insert, $param);
+      $action = new system\RCUD($insert, $param);
       $action->CUD();
       //mail(filter($_POST['mail']), 'Votre inscription à', 'Votre token de confirmation:'.$_POST['token'])
     header('location:../index.php?message=Vous avez reçus un mail pour confirmer votre inscription&idNav='.$idNav);

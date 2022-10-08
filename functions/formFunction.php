@@ -2,7 +2,7 @@
 function encodeRoutage($id) {
   $param = [['prep'=>':idForm', 'variable'=>$id]];
   $select = "SELECT `route` FROM `routageForm` WHERE `idForm` = :idForm AND `valide` = 1";
-  $readTarget = new RCUD($select, $param);
+  $readTarget = new system\RCUD($select, $param);
   $data = $readTarget->READ();
   return 'formulaires/DBaccess.php?route='.$data[0]['route'];
 }

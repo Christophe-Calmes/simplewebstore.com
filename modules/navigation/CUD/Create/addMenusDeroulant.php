@@ -6,16 +6,16 @@ if ($controleForm == [0, 0, 0]) {
   $niveau = filter($_POST['niveau']);
   array_pop($_POST);
   // Création du nouveau menu déroulant
-  $parametre = new Preparation();
+  $parametre = new system\Preparation();
   $param = $parametre->creationPrep ($_POST);
   $insert = "INSERT INTO `menuNav`(`titreMenu`) VALUES (:titreMenu)";
-  $action = new RCUD($insert, $param);
+  $action = new system\RCUD($insert, $param);
   $action->CUD();
   // Création du menu déroulant dans la table navigation
   // Construction de la valeur déroulant Recherche de l'id du dernière enregistrement
   $select = "SELECT `idMenuDeroulant` FROM `menuNav`ORDER BY `idMenuDeroulant` DESC LIMIT 1";
   $void = array();
-  $readLastId = new RCUD($select, $void);
+  $readLastId = new system\RCUD($select, $void);
   $lastId = $readLastId->READ();
   // Construction du nouveau $_POST
     $nomNav = $_POST['titreMenu'];
@@ -31,9 +31,9 @@ if ($controleForm == [0, 0, 0]) {
     // Création du tableau $param pour enregistrement dans navigation
       $insert = "INSERT INTO `navigation`(`nomNav`, `cheminNav`, `menuVisible`, `zoneMenu`, `ordre`, `niveau`, `deroulant`, `targetRoute`)
       VALUES (:nomNav, :cheminNav, :menuVisible, :zoneMenu, :ordre, :niveau, :deroulant, :targetRoute)";
-      $parametre = new Preparation();
+      $parametre = new system\Preparation();
       $param = $parametre->creationPrep ($_POST);
-      $action = new RCUD($insert, $param);
+      $action = new system\RCUD($insert, $param);
       $action->CUD();
       header('location:../index.php?message=Nouveau menu déroulant enregistré&idNav='.$idNav);
 } else {

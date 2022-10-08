@@ -15,7 +15,7 @@ echo '<h3>Liste des utilisateurs | page : '.$currentPage.'</h3>';
 // Nombre d'utilisateurs + Nombre de pages
 $count ="SELECT COUNT(`idUser`) AS `nbr` FROM `users` WHERE `valide` = :valide";
  $element = [['prep'=>':valide', 'variable'=>$valide]];
-$countUsers = new RCUD($count, $element);
+$countUsers = new system\RCUD($count, $element);
 $nbr = $countUsers->READ();
 $nbrArticles = $nbr[0]['nbr'];
 $pages = ceil($nbrArticles/$parPage);

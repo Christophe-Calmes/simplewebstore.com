@@ -5,7 +5,7 @@
 <?php
 function doublon ($select) {
   $void = [];
-  $controle = new RCUD($select, $void);
+  $controle = new system\RCUD($select, $void);
   $doublon = $controle->READ();
   if(!empty($doublon)) {
     echo '<p>Doublon détecté dans le clés. Changer le trousseau.</p>';
@@ -22,13 +22,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     require 'functions/functionToken.php';
     $select = "SELECT `idNav` FROM `navigation` WHERE `valide` = 1";
     $void = array();
-      $readIdNav = new RCUD($select, $void);
+      $readIdNav = new system\RCUD($select, $void);
       $listeIdNav = $readIdNav->READ();
 
   foreach ($listeIdNav as $key => $value) {
     $update = "UPDATE `navigation` SET `targetRoute` = :targetRoute WHERE `idNav` = :idNav";
     $param = [['prep'=>':targetRoute', 'variable'=>IntToken(rand(10,16))], ['prep'=>':idNav', 'variable'=>$value['idNav']]];
-        $updateRoute = new RCUD($update, $param);
+        $updateRoute = new system\RCUD($update, $param);
         $updateRoute->CUD();
   }
   echo '<p>Serie de clé de routage interne modifié.</p>';

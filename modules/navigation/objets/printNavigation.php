@@ -12,7 +12,7 @@ Class PrintNavigation extends GetNavigation {
           FROM `navigation`
           WHERE `zoneMenu` = :zoneMenu AND `niveau` = :niveau AND `valide` = 1";
           $param = [['prep'=>':zoneMenu', 'variable'=>$value['deroulant']],['prep'=>':niveau', 'variable'=>$value['niveau']]];
-          $readData = new RCUD($select, $param);
+          $readData = new system\RCUD($select, $param);
           $dataTraiter = $readData->READ();
           echo ' <div class="dropdown-child">';
           foreach ($dataTraiter as $cle => $valeur) {

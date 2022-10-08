@@ -1,4 +1,5 @@
 <?php
+namespace system;
 class ParamDB {
   protected $serverName = "localhost";
   protected $userName = "webStore";
