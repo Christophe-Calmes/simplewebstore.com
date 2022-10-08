@@ -6,6 +6,7 @@ $mdpA = filter($_POST['mpdA']);
 if(($mdp == $mdpA)&&(strlen($mdp) > 9)) {
   // Traitement // MPD : christophe
   array_pop($_POST);
+  array_pop($_POST);
   // Vérification de la taille des éléments
   $elements = [['post'=>'email', 'size'=>80], ['post'=>'prenom', 'size'=>60], ['post'=>'nom', 'size'=>60], ['post'=>'login', 'size'=>60], ['post'=>'mdp', 'size'=>120]];
   foreach ($elements as $key => $value) {
